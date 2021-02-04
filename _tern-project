@@ -1,0 +1,24 @@
+{
+  "libs": [
+    "ecma5",
+    "ecma6",
+    "ecma7",
+    "browser",
+    "react",
+    "lodash",
+    "moment",
+    "jest",
+    "jasmine",
+    "chai",
+    "mocha"
+  ],
+  "plugins": {
+    "node": {},
+    "node_resolve": {},
+    "doc_comment": {},
+    "es_modules": {},
+    "node": {},
+    "webpack": {}
+  },
+  "ecmaVersion": 7
+}
