@@ -1,0 +1,8 @@
+.DS_Store
+.netrwhist
+package-lock.json
+node_modules/
+
+backup/
+pack/plugins/start/*
+pack/plugins/opt/*
