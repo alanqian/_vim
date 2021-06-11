@@ -269,19 +269,34 @@ nnoremap <silent> <leader>z :call FoldAtHere()<cr>
 " => Fonts, Colors and Highlights
 
 " Set font according to system
+"guifont/guifontwide setting
+"set gfn=JetBrains\ Mono:h14
+"set gfn=Fira\ Code:h14
+"set gfn=Melno:h14
+"set gfn=Monaco:h14
+"set gfn=DejaVu\ Sans\ Mono:h14
+"set gfn=Ubuntu\ Mono:h14
+"set gfn=Monospace:h14
+"---
+"set gfw=Droid\ Sans\ Fallback:h15 # " GB18030, bigger than gfn
+"set gfw=STSong:h14 " GB18030
+"set gfw=STZhongSong:h15 " GBK,20902
+"set gfw=STXiHei:h15 " GBK,20902, bigger than gfn
 if MySys() == "macOS"
   set gfn=JetBrains\ Mono:h14 "Melno:h14
+  set gfw=STXiHei:h15 " GBK,20902, bigger than gfn
   set shell=/bin/bash
   let g:resolution=system('system_profiler SPDisplaysDataType | grep Resolution | sed -E -e "s/ +/:/g" | cut -d ":" -f4,6')[:-2]
 elseif MySys() == "Windows"
   let g:resolution='1280:800'
   set gfn=Monaco:h12
+  set gfw=STXiHei:h15 " GBK,20902, bigger than gfn
 elseif MySys() == "Linux"
   let g:resolution='1280:800'
   set gfn=Monospace\ 12
+  set gfw=STXiHei\ 15 " GBK,20902
   set shell=/bin/bash
 endif
-"set gfw=Droid\ Sans\ Fallback
 
 " color scheme
 if has("gui_running")
@@ -501,7 +516,7 @@ augroup vimrc_filetypes
   autocmd User Rails Rnavcommand config config -glob=**/* -suffix=.rb -default=routes
 
   " Automatically wrap at 80 characters for Markdown
-  autocmd FileType markdown setlocal textwidth=80 nospell wrap
+  autocmd FileType markdown setlocal textwidth=80 linespace=5 gfw=STZhongSong:h15 nospell wrap
 
   " Automatically wrap at 72 characters and spell check git commit messages
   autocmd FileType gitcommit setlocal textwidth=72 spell
