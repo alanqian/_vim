@@ -762,7 +762,7 @@ let g:pydocstring_formatter = 'google'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-templates
 let g:email = "qian.guoxiang@qq.com"
-let g:project = "dsc"
+let g:project = "the-project"
 let g:templates_directory = $HOME . '../dots/vim/templates'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -822,6 +822,7 @@ let g:ale_fixers.ruby = ['rubocop']
 """
 " javascript: npm install -g eslint eslint-plugin-html eslint-plugin-vue standard stylelint prettier fixjson jsonlint
 " standard --plugin html '**/*.{js,vue}'
+" html: brew install tidy-html5
 let g:ale_linters.javascript = ['standard'] " ['eslint']
 let g:ale_fixers.javascript = ['standard'] " ['prettier', 'eslint']
 let g:ale_linters.vue = ['eslint']
@@ -835,6 +836,7 @@ let g:ale_fixers.xml = ['xmllint']
 let g:ale_xml_xmllint_options = '--encode utf8'
 let g:ale_linters.html = []
 let g:ale_fixers.html = ['tidy']
+let g:ale_html_tidy_options = '-q -e -i'
 let g:ale_linters.haml = ['haml-lint']
 let g:ale_linters.json = ['jsonlint']
 let g:ale_fixers.json = ['fixjson', 'prettier']
