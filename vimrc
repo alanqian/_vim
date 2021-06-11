@@ -574,6 +574,9 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 "12. Spelling suggestions                       |i_CTRL-X_s|
 "13. keywords in 'complete'                     |i_CTRL-N|
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" C/C++ Code Navigation:
+" ctags + cscope + NerdTree + tagbar
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ctags
@@ -583,10 +586,14 @@ set tags+=~/.TAGS
 set tags+=.tags
 set tags+=../.tags
 
-" Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
-map <C-F12> :!ctags -f .tags -R --c++-kinds=+p --c-kinds=+p --fields=+iaS --extra=+q --exclude=.svn . && cscope -bkq *.h *.cpp<CR>
-" Index ctags from any project, including those outside Rails
-"map <Leader>ct :!ctags -R .<CR>
+func! CTags()
+  exec "normal mz"
+  " exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
+  :!ctags -f .tags -R --c++-kinds=+p --c-kinds=+p --fields=+iaS --extra=+q --exclude=.svn . && cscope -bkq *.h *.cpp<CR>
+  " index ctags from any project
+  ":!ctags -R .<CR>
+  exec "normal `z"
+endfunc
 
 " cscope
 if has("cscope")
@@ -598,7 +605,7 @@ if has("cscope")
   " add any database in dirs
   for f in [ './cscope.out', './.cscope.out', '../cscope.out', '../.cscope.out', '../../cscope.out', '../../.cscope.out']
     if filereadable(f)
-      execute 'cs add ' . f . ' ~/work/dsc7/'
+      execute 'cs add ' . f . ' ~/work/' . g:project
       set csverb
       break
     endif
