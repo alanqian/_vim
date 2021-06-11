@@ -232,6 +232,8 @@ augroup build_log
   autocmd BufReadPost build.log :call Filter_win_build_log()
 augroup END
 
+"show c/c++ system include path
+"$ echo "" | gcc -xc - -v -E
 "default: path=.,/usr/include,,
 set path+=,/usr/local/include,
 "let autocomplete ignore boost 
