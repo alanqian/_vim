@@ -859,6 +859,7 @@ command Lint ALELint
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => YCM: YouCompleteMe
+" YcmToggleLogs, YcmDebugInfo, YcmDiags
 let g:ycm_python_binary_path = '/usr/local/bin/python3'
 "let g:ycm_server_python_interpreter=$HOME.'/.pyenv/shims/python3'
 let g:ycm_server_python_interpreter='/usr/local/bin/python3'
@@ -874,8 +875,12 @@ let g:ycm_filetype_blacklist = {
       \ 'vimwiki': 1,
       \ 'log': 1,
       \}
-" assign shortcut key for GoToDefinition
+" assign shortcut key for GoToDefinition, etc.
 map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>jt :YcmCompleter GoTo<CR>
+nnoremap <leader>ji :YcmCompleter GoToInclude<CR>
+nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>jD :YcmCompleter GoToDefinition<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
