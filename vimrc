@@ -889,11 +889,20 @@ let g:UltiSnipsExpandTrigger='<c-l>' " <tab>
 
 let g:user_emmet_install_global = 1
 "let g:user_emmet_leader_key = <C-y>
+
+" p#foo.bar => <p id="foo" class="bar">
 "let g:user_emmet_expandabbr_key = '<C-y>,'
-let g:user_emmet_expandabbr_key = '<C-y>k'
+let g:user_emmet_expandabbr_key = '<C-y>k'  
+
+" foo => <foo>@</foo>
 "let g:user_emmet_expandword_key = '<C-y>;'
-let g:user_emmet_expandword_key = '<C-y>w'
+let g:user_emmet_expandword_key = '<C-y>w'  
+
+" emmet-wrap-with-abbreviation *v_<C-y>,*
+
+" <foo></foo> => <foo class="k" id="bar"></foo>
 "let g:user_emmet_update_tag = '<C-y>u'
+
 "let g:user_emmet_balancetaginward_key = '<C-y>d'
 "let g:user_emmet_balancetagoutward_key = '<C-y>D'
 "let g:user_emmet_next_key = '<C-y>n'
