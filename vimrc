@@ -26,7 +26,7 @@
 " -- syntastic: configure syntax checking to check on open as well as save
 " => ale: Asynchronous Lint Engine
 " => YCM: YouCompleteMe
-" => UltiSnip: The ultimate snippet solution for Vim
+" => UltiSnips: The ultimate snippet solution for Vim
 " => emmet-vim: Zen-coding for HTML and CSS 
 " => jsdoc: Generate JSDoc to your JavaScript code.
 " => Pydoc.vim - integrates Python documentation system into Vim.
@@ -884,8 +884,10 @@ nnoremap <leader>jD :YcmCompleter GoToDefinition<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => UltiSnip: The ultimate snippet solution for Vim
-let g:UltiSnipsExpandTrigger='<c-l>' " <tab>
+" => UltiSnips: The ultimate snippet solution for Vim
+let g:UltiSnipsSnippetDirectories=[] " ignore snippets in ./UltiSnips
+let g:UltiSnipsExpandTrigger='<c-l>' " <tab> for YCM
+"let g:UltiSnipsListSnippets='<c-tab>'
 "let g:UltiSnipsJumpForwardTrigger='<c-j>'
 "let g:UltiSnipsJumpBackwardTrigger='<c-k>'
 
