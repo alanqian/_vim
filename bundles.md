@@ -168,19 +168,31 @@ removing unused imports, sorting imports, etc.
 [YouCompleteMe Install](https://ycm-core.github.io/YouCompleteMe/#installation)
 
 ```
-# 0. preparation for python/jedi, typescript, llvm, libclang
+# 0. preparation for llvm/clang, python/jedi, node/typescript, etc
 
-$ pip3 install jedi
-$ brew install llvm-3.9 clang-3.9 libclang-3.9-dev libboost-all-dev
-$ npm install -g typescript
+    $ brew install cmake llvm
+    $ brew upgrade go python node
+    $ pip3 install jedi
+    $ npm install -g typescript
 
 # 1. clone git repository
 
-$ git clone --recursive https://github.com/ycm-core/YouCompleteMe.git
+    $ git clone --recursive https://github.com/ycm-core/YouCompleteMe.git
+    $ cd YouCompleteMe
+    $ git submodule update --init --recursive
 
-# 2. check repository
+# 2. Compile YCM
 
-$ git submodule update --init --recursive
+    $ cd <YouCompleteMe>
+    # Compiling YCM all in one
+    $ python3 ./install.py --all
+    # Compiling YCM without semantic support for C-family languages:
+    $ python3 ./install.py
+    # or Compiling YCM with semantic support for C-family languages through clangd:
+    $ python3 ./install.py --clangd-completer
+    # add --ts-completer, --go-completer, --rust-completer
+
+done.
 
 # 3. download the latest version of libclang, can be skipped on macOS
 
