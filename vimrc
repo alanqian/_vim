@@ -509,7 +509,7 @@ augroup vimrc_filetypes
   autocmd!
 
   " Set syntax highlighting for specific file types
-  autocmd BufRead,BufNewFile *.h,*.hh,*.hpp,*.hxx,*.inl,*.c,*.cc,*.cpp,*.cxx set filetype=cpp
+  autocmd BufRead,BufNewFile *.h,*.hh,*.hpp,*.hxx,*.inl,*.cc,*.cpp,*.cxx set filetype=cpp
   autocmd BufRead,BufNewFile Appraisals set filetype=ruby
   autocmd BufRead,BufNewFile *.md set filetype=markdown
 
