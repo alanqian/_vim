@@ -406,11 +406,28 @@ noremap <C-\> <Esc>^i// <Esc>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
 
+func! GoNextMethod()
+  if &filetype == 'ruby' || &filetype == 'java' || &filetype == 'python'
+    exec "normal ]m"
+  else
+    exec "normal ]]"
+  endif
+endfunc
+
+func! GoPrevMethod()
+  if &filetype == 'ruby' || &filetype == 'java' || &filetype == 'python'
+    exec "normal [m"
+  else
+    exec "normal [["
+  endif
+endfunc
+
 " Map space to next/prev method
-nmap <Space> ]m
-nmap <C-Space> [m
-vmap <Space> ]m
-vmap <C-Space> [m
+nmap <silent> <Space> :call GoNextMethod()<cr>
+nmap <silent> <C-Space> :call GoPrevMethod()<cr>
+vmap <silent> <Space> :call GoNextMethod()<cr>
+vmap <silent> <C-Space> :call GoPrevMethod()<cr>
+
 " hide search highlightings
 nmap <silent> <leader>/ :let @/=''<cr>
 nmap <silent> <leader>? :%s///gn<cr>
