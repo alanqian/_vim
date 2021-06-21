@@ -450,17 +450,6 @@ nnoremap <leader><leader> <c-^>
 "map <leader>tc :tabclose<cr>
 "map <leader>tm :tabmove
 
-" vimdiff: vertical diffs, next/prev 
-set diffopt+=vertical       " Always use vertical diffs
-if &diff
-  nnoremap <Space> ]c
-  nnoremap <M-Space> [c
-  nnoremap <Down> ]c
-  nnoremap <Up> [c
-  nnoremap <leader>p :diffput
-  colorscheme slate  " peachpuff, ron, slate
-endif
-
 " When pressing <leader>cd switch to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
 
@@ -1012,6 +1001,18 @@ func! SaveBufferList()
   endif
 endfunc
 nmap <F10> :call SaveBufferList()<cr>
+
+" vimdiff: vertical diffs, next/prev 
+set diffopt+=vertical       " Always use vertical diffs
+if &diff
+  nnoremap <Space> ]c
+  nnoremap <M-Space> [c
+  nnoremap <Down> ]c
+  nnoremap <Up> [c
+  nnoremap <leader>p :diffput
+  nnoremap <leader>g :diffget
+  colorscheme slate  " peachpuff, ron, slate
+endif
 
 """" Load local config: .vimrc, _vimrc """"
 " Project-based local config .vimrc sample
