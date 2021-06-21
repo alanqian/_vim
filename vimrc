@@ -684,6 +684,7 @@ let g:tagbar_width = 30
 let g:tagbar_compact=1
 " configuration for c++: 
 " kinds: {short}:{long}[:{fold}[:{stl}]]
+" 'l:local:0:1',
 let g:tagbar_type_cpp = {
     \ 'kinds' : [
          \ 'c:classes:0:1',
@@ -691,7 +692,6 @@ let g:tagbar_type_cpp = {
          \ 'e:enumerators:0:0', 
          \ 'f:functions:0:1',
          \ 'g:enumeration:0:1',
-         \ 'l:local:0:1',
          \ 'm:members:0:1',
          \ 'n:namespaces:0:1',
          \ 'p:functions_prototypes:0:1',
