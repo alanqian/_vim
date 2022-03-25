@@ -109,6 +109,13 @@ if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
   syntax on
 endif
 
+" TO resize window splits, use Ctrl-w + ?
+" resize height: <C-W> n[-|+]
+" resize width: <C-W> n[>|<]
+" all to equal dimensions: <C-W> =
+" maximum height: <C-w> _
+" maximum width: <C-W> |
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files: encoding, backups, undo, last cursor position
 
@@ -280,13 +287,19 @@ nnoremap <silent> <leader>z :call FoldAtHere()<cr>
 "set gfn=Ubuntu\ Mono:h14
 "set gfn=Monospace:h14
 "---
-"set gfw=Droid\ Sans\ Fallback:h15 # " GB18030, bigger than gfn
+"
+"set gfw=Droid\ Sans\ Fallback:h15 " GB18030, bigger than gfn
+"set gfw=PingFang\ SC\ Light:h15 " GB18030, bigger than gfn
+"set gfw=PingFang\ SC:h15 " GB18030, bigger than gfn
+"set gfw=Alibaba\ PuHuiTi\ Light:h15 " GB18030?
+"set gfw=Alibaba\ PuHuiTi:h15 " GB18030?
 "set gfw=STSong:h14 " GB18030
 "set gfw=STZhongSong:h15 " GBK,20902
 "set gfw=STXiHei:h15 " GBK,20902, bigger than gfn
 if MySys() == "macOS"
-  set gfn=JetBrains\ Mono:h14 "Melno:h14
-  set gfw=STXiHei:h15 " GBK,20902, bigger than gfn
+  set gfn=JetBrains\ Mono:h14 " Melno:h14
+  "set gfw=PingFang\ SC:h15 " GB18030, bigger than gfn
+  set gfw=Alibaba\ PuHuiTi:h15 " GB18030?
   set shell=/bin/bash
   let g:resolution=system('system_profiler SPDisplaysDataType | grep Resolution | sed -E -e "s/ +/:/g" | cut -d ":" -f4,6')[:-2]
 elseif MySys() == "Windows"
