@@ -523,8 +523,9 @@ augroup vimrc_filetypes
   autocmd User Rails Rnavcommand step features/step_definitions -glob=**/* -suffix=_steps.rb
   autocmd User Rails Rnavcommand config config -glob=**/* -suffix=.rb -default=routes
 
-  " Automatically wrap at 80 characters for Markdown
-  autocmd FileType markdown setlocal textwidth=80 linespace=5 gfw=STZhongSong:h15 nospell wrap
+  " Automatically wrap at 80 characters for Markdown, gfw=STZhongSong:h15
+  autocmd FileType markdown setlocal textwidth=80 linespace=5 nospell wrap
+  " autocmd FileType markdown setlocal formatprg=? equalprg=?
 
   " Automatically wrap at 72 characters and spell check git commit messages
   autocmd FileType gitcommit setlocal textwidth=72 spell
@@ -846,7 +847,8 @@ let g:ale_html_tidy_options = '-q -e -i'
 let g:ale_linters.haml = ['haml-lint']
 let g:ale_linters.json = ['jsonlint']
 let g:ale_fixers.json = ['fixjson', 'prettier']
-
+let g:ale_linters.markdown= ['markdownlint']
+let g:ale_fixers.markdown= ['prettier']
 """
 " yaml: 
 let g:ale_linters.yaml = ['yamllint']

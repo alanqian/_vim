@@ -301,11 +301,12 @@ https://github.com/w0rp/ale
       +   \   ? ' *.py'
 
 
-> add markdown fixer
-> https://github.com/remarkjs/remark
 
 ```
+# add markdown parser: https://github.com/remarkjs/remark
+$ npm install remark
 $ npm install standard --global
+$ npm install markdownlint remark-lint prettier
 
 $ vim ~/.vimrc
 
