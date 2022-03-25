@@ -20,6 +20,8 @@ git clone --recursive https://github.com/ycm-core/YouCompleteMe.git
 cd YouCompleteMe
 git submodule update --init --recursive || { echo 'git submodule update failed' ; exit 1; }
 cd ../..
+# wget https://github.com/ycm-core/llvm/releases/download/12.0.0/libclang-12.0.0-x86_64-apple-darwin.tar.bz2
+# -> ./third_party/ycmd/clang_archives/
 
 # step 2. Compile YCM
 # Compiling YCM all in one
@@ -33,6 +35,9 @@ $ python3 ./install.py
 
 # or Compiling YCM with semantic support for C-family languages through clangd:
 $ python3 ./install.py --clangd-completer
+
+# or Compiling YCM with many completers
+$ python3 ./install.py --clang-completer --system-libclang --clangd-completer --ts-completer
 
 # other compile options:
 # --ts-completer    - for javascript/typescript support

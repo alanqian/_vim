@@ -41,40 +41,42 @@ flags = [
     # For a C project, you would set this to 'c' instead of 'c++'.
     '-x',
     'c++',
+    # set ../include to include path
+    '-I', './include',
 ]
 
 # show c/c++ system include path
 # $ echo "" | gcc -xc - -v -E
-if platform.system() == 'Darwin':
-    flags += [
-        '-isystem',
-        '/usr/local/include',
-        '-isystem',
-        '/usr/local/include/c++/10.2.0',
-        '-isystem',
-        ('/Applications/Xcode.app/Contents/Developer/Toolchains/'
-         'XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include'),
-        '-isystem',
-        ('/Applications/Xcode.app/Contents/Developer/Platforms/'
-         'MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include'),
-        '-isystem',
-        ('/Applications/Xcode.app/Contents/Developer/Toolchains/'
-         'XcodeDefault.xctoolchain/usr/include'),
-        '-isystem',
-        ('/Applications/Xcode.app/Contents/Developer/Platforms/'
-         'MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks')
-    ]
-elif platform.system() == 'Linux':
-    flags += [
-        '-isystem',
-        '/usr/include',
-        '-isystem',
-        '/usr/local/include',
-    ]
-elif platform.system() == 'Windows':
-    # add include path
-    flags += [
-    ]
+# if platform.system() == 'Darwin':
+#     flags += [
+#         '-isystem',
+#         '/usr/local/include',
+#         '-isystem',
+#         '/usr/local/include/c++/10.2.0',
+#         '-isystem',
+#         ('/Applications/Xcode.app/Contents/Developer/Toolchains/'
+#          'XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include'),
+#         '-isystem',
+#         ('/Applications/Xcode.app/Contents/Developer/Platforms/'
+#          'MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include'),
+#         '-isystem',
+#         ('/Applications/Xcode.app/Contents/Developer/Toolchains/'
+#          'XcodeDefault.xctoolchain/usr/include'),
+#         '-isystem',
+#         ('/Applications/Xcode.app/Contents/Developer/Platforms/'
+#          'MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks')
+#     ]
+# elif platform.system() == 'Linux':
+#     flags += [
+#         '-isystem',
+#         '/usr/include',
+#         '-isystem',
+#         '/usr/local/include',
+#     ]
+# elif platform.system() == 'Windows':
+#     # add include path
+#     flags += [
+#     ]
 
 # Set this to the absolute path to the folder (NOT the file!) containing the
 # compile_commands.json file to use that instead of 'flags'. See here for
@@ -92,8 +94,9 @@ else:
 SOURCE_EXTENSIONS = ['.cpp', '.cxx', '.cc', '.c', '.m', '.mm']
 
 
-def DirectoryOfThisScript():
-    return os.path.dirname(os.path.abspath(__file__))
+def ThisDirectory():
+    # return os.path.dirname(os.path.abspath(__file__))
+    return os.getcwd()
 
 
 def IsHeaderFile(filename):
@@ -121,11 +124,11 @@ def GetCompilationInfoForFile(filename):
 
 # This is the entry point; this function is called by ycmd to produce flags for
 # a file.
-def FlagsForFile(filename, **kwargs):
+def CFlagsForFile(filename):
     if not database:
         return {
-            'flags': flags,
-            'include_paths_relative_to_dir': DirectoryOfThisScript()
+            'flags': flags
+            # 'include_paths_relative_to_dir': ThisDirectory()
         }
 
     compilation_info = GetCompilationInfoForFile(filename)
@@ -135,6 +138,21 @@ def FlagsForFile(filename, **kwargs):
     # Bear in mind that compilation_info.compiler_flags_ does NOT return a
     # python list, but a "list-like" StringVec object.
     return {
-        'flags': list(compilation_info.compiler_flags_),
+        'flags': flags, # list(compilation_info.compiler_flags_),
         'include_paths_relative_to_dir': compilation_info.compiler_working_dir_
     }
+
+
+# This is the entry point; this function is called by ycmd to produce flags for
+# a file.
+def Settings( **kwargs ):
+    language = kwargs['language']
+    if language == 'cfamily':
+        return CFlagsForFile(kwargs['filename'])
+
+    if language == 'python':
+        return {
+            # Settings for the Python completer.
+        }
+
+    return {}

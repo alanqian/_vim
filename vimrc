@@ -833,6 +833,7 @@ let g:ale_fixers = {}
 let g:ale_linters.c = ['clang-format']
 let g:ale_linters.cpp = ['clang-format']
 let g:ale_fixers.cpp = ['clang-format']
+"let g:ale_c_clangformat_options = '-I../include'
 let g:ale_linters.python = ['flake8', 'pylint', 'pydocstyle', 'vulture']
 "let g:ale_linters.python = ['flake8', 'pylint', 'pydocstyle']
 let g:ale_fixers.python = ['autopep8']
@@ -883,12 +884,12 @@ command Lint ALELint
 " YcmToggleLogs, YcmDebugInfo, YcmDiags
 let g:ycm_python_binary_path = '/usr/local/bin/python3'
 "let g:ycm_server_python_interpreter=$HOME.'/.pyenv/shims/python3'
-let g:ycm_server_python_interpreter='/usr/local/bin/python3'
-let g:ycm_global_ycm_extra_conf='~/.vim/ycm_extra_conf.py'
+let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
+let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_filetype_blacklist = {
       \ 'markdown': 1,
       \ 'text': 1,
@@ -897,11 +898,19 @@ let g:ycm_filetype_blacklist = {
       \ 'log': 1,
       \}
 " assign shortcut key for GoToDefinition, etc.
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <leader>jt :YcmCompleter GoTo<CR>
-nnoremap <leader>ji :YcmCompleter GoToInclude<CR>
-nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>jD :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoTo<CR>
+nnoremap <leader>gv :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>gm :YcmCompleter GoToImplementationElseDeclaration<CR>
+nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
+nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gD :YcmCompleter GoToDefinition<CR>
+command GotoVariable :YcmCompleter GoToDefinitionElseDeclaration
+command GotoMethod :YcmCompleter GoToImplementationElseDeclaration
+command GotoInclude :YcmCompleter GoToInclude
+command GotoDeclaration :YcmCompleter GoToDeclaration
+command GotoDefinition :YcmCompleter GoToDefinition
+command GotoReferences :YcmCompleter GoToReferences
+command GoToImplementation :YcmCompleter GoToImplementation
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1049,7 +1058,7 @@ endif
 """" Load local config: .vimrc, _vimrc """"
 " Project-based local config .vimrc sample
 " let g:project = "foo"
-" set path+='/opt/local/include,'
+" set path+='/opt/local/include,./include,./src,'
 " set wildignore+='*/tmp/*,build/*,bin/*,'
 func! LoadLocalVimrc()
   let pdir = getcwd()
