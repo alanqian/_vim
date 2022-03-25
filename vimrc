@@ -825,6 +825,12 @@ let g:html_indent_tags = 'li\|p'
 "let g:syntastic_python_checker=['flake8']
  
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-markdown-wiki: revised wiki page title as '# ' style
+function! MdwiWriteTitle(word)
+  return 'normal!\ a# '.escape(a:word, ' \').'\<esc>o'.'\<esc>o'
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ale: Asynchronous Lint Engine
 " https://github.com/w0rp/ale
 let g:ale_linters = {}
