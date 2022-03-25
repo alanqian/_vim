@@ -423,6 +423,44 @@ https://github.com/mmai/vim-markdown-wiki
 > https://www.npmjs.com/package/remarkable
 > https://www.npmjs.com/package/prettify-markdown
 
+#### Markdown Preview for (Neo)vim
+
+[markdown-preview.nvim](
+https://github.com/iamcco/markdown-preview.nvim
+) - Markdown Preview for (Neo)vim
+
+Preview markdown on your modern browser with synchronised scrolling and flexible configuration
+
+Main features:
+
+- Cross platform (macos/linux/windows)
+- Synchronised scrolling
+- Fast asynchronous updates
+- Katex for typesetting of math
+- Plantuml
+- Mermaid
+- Chart.js
+- sequence-diagrams
+- flowchart
+- dot
+- Toc
+- Emoji
+- Task lists
+- Local images
+- Flexible configuration
+
+
+* To install markdown-preview, goto work directory, then
+
+    $ cd app
+    $ yarn install
+
+  then, open vim and type
+
+    :call mkdp#util#install()
+
+  done.
+
 #### Dash/IME for macos
 
 [dash.vim](

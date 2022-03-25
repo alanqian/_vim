@@ -108,6 +108,9 @@ git clone git@github.com:suan/vim-instant-markdown.git pack/plugins/start/vim-in
 # add vim-markdown-wiki
 git clone git@github.com:mmai/vim-markdown-wiki.git pack/plugins/start/vim-markdown-wiki
 
+# add markdown-preview.nvim
+git clone git@github.com:iamcco/markdown-preview.nvim.git pack/plugins/start/markdown-preview.nvim
+
 # add dash.vim
 git clone git@github.com:rizzatti/dash.vim.git pack/plugins/start/dash.vim
 
