@@ -279,48 +279,54 @@ nnoremap <silent> <leader>z :call FoldAtHere()<cr>
 
 " Set font according to system
 "guifont/guifontwide setting
-"set gfn=JetBrains\ Mono:h14
-"set gfn=Fira\ Code:h14
-"set gfn=Melno:h14
-"set gfn=Monaco:h14
-"set gfn=DejaVu\ Sans\ Mono:h14
-"set gfn=Ubuntu\ Mono:h14
-"set gfn=Monospace:h14
+"let g:gfn='JetBrains Mono'
+"let g:gfn='Fira Code'
+"let g:gfn='Melno'
+"let g:gfn='Monaco'
+"let g:gfn='DejaVu Sans Mono'
+"let g:gfn='Ubuntu Mono'
+"let g:gfn='Monospace'
 "---
-"
-"set gfw=Droid\ Sans\ Fallback:h15 " GB18030, bigger than gfn
-"set gfw=PingFang\ SC\ Light:h15 " GB18030, bigger than gfn
-"set gfw=PingFang\ SC:h15 " GB18030, bigger than gfn
-"set gfw=Alibaba\ PuHuiTi\ Light:h15 " GB18030?
-"set gfw=Alibaba\ PuHuiTi:h15 " GB18030?
-"set gfw=STSong:h14 " GB18030
-"set gfw=STZhongSong:h15 " GBK,20902
-"set gfw=STXiHei:h15 " GBK,20902, bigger than gfn
+"let g:gfw='HarmonyOS Sans SC' " 29,221, UCS-Ext-A
+"let g:gfw='HarmonyOS Sans SC Medium' " 29,221, UCS-Ext-A
+"let g:gfw='HarmonyOS Sans SC Light' " 29,221, UCS-Ext-A
+"let g:gfw='Droid Sans Fallback' " 49775, IDS-UCS-Ext-B-3
+"let g:gfw='PingFang SC Light' " 48,928, IDS-UCS-Ext-B-3
+"let g:gfw='PingFang SC' " 48,928, IDS-UCS-Ext-B-3
+"let g:gfw='Alibaba PuHuiTi Light' " 28987, UCS-Ext-A
+"let g:gfw='Alibaba PuHuiTi' " 28987, UCS-Ext-A
+"let g:gfw='STSong' " 43,033, IDS-UCS-Ext-B-2
+"let g:gfw='STZhongSong' " 25,185, GBK
+"let g:gfw='STXiHei' " 25,185, GBK
+let g:gfn = 'JetBrains Mono'
+let g:gfw = 'HarmonyOS Sans SC' " 29,221, UCS-Ext-A
+let g:fsep = ':h'
+let g:gfs = 14
 if MySys() == "macOS"
-  set gfn=JetBrains\ Mono:h14 " Melno:h14
-  "set gfw=PingFang\ SC:h15 " GB18030, bigger than gfn
-  set gfw=Alibaba\ PuHuiTi:h15 " GB18030?
   set shell=/bin/bash
   let g:resolution=system('system_profiler SPDisplaysDataType | grep Resolution | sed -E -e "s/ +/:/g" | cut -d ":" -f4,6')[:-2]
 elseif MySys() == "Windows"
   let g:resolution='1280:800'
-  set gfn=Monaco:h12
-  set gfw=STXiHei:h15 " GBK,20902, bigger than gfn
 elseif MySys() == "Linux"
   let g:resolution='1280:800'
-  set gfn=Monospace\ 12
-  set gfw=STXiHei\ 15 " GBK,20902
+  let g:fsep = ' '
   set shell=/bin/bash
 endif
 
 " color scheme
 if has("gui_running")
   set guioptions-=T
-  if g:resolution == '3840:2160'
-    " for 4K monitor: 3840x2160
-    set linespace=3  " for Chinese ideograph
-    set lines=54 columns=210
+  if g:resolution == '3840:2160' " for 4K monitor: 3840x2160
+    set lines=51 columns=210
+    let g:gfs = 14
+  elseif g:resolution == '1920:1080'
+    set lines=46 columns=200
+    let g:gfs = 15
   endif
+  " set guifont, guifontwide
+  let &gfn = g:gfn . g:fsep . g:gfs
+  let &gfw = g:gfw . g:fsep . (g:gfs+1) " bigger Chinese font
+  set linespace=3  " for Chinese ideograph
   set nomousehide
   winpos 110 23
   set t_Co=256 " colors
@@ -537,7 +543,7 @@ augroup vimrc_filetypes
   autocmd User Rails Rnavcommand config config -glob=**/* -suffix=.rb -default=routes
 
   " Automatically wrap at 80 characters for Markdown, gfw=STZhongSong:h15
-  autocmd FileType markdown setlocal textwidth=80 linespace=5 nospell wrap
+  autocmd FileType markdown setlocal textwidth=80 linespace=3 nospell wrap
   " autocmd FileType markdown setlocal formatprg=? equalprg=?
 
   " Automatically wrap at 72 characters and spell check git commit messages
