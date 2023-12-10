@@ -692,7 +692,7 @@ endfunc
 " show keyboard string layout: 
 "   xkbswitch -g -e
 let g:barbaric_default = 'US'
-let g:barbaric_local = 2 " pinyin
+let g:barbaric_local = 5 " Since sougo pinyin without layout name
 let g:barbaric_timeout = 20 "seconds
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1130,4 +1130,9 @@ func! LoadLocalVimrc()
 endfunc 
 call LoadLocalVimrc()
 
+" Fast editing of the GTD.md, .vimrc
+nmap <leader>td :vsp ~/work/GTD.md<cr>
+nmap <leader>tD :tabe! ~/work/GTD.md<cr>:lcd ~/work/memo/<cr>
+" set working directory as current file 
+nmap <leader>cd :lcd %:p:h<cr>
 """end of vimrc"""
